@@ -88,3 +88,14 @@ CREATE TABLE Persons (Person_id int NOT NULL,Person_name varchar(255) NOT NULL,P
 -- By default, the starting value for AUTO_INCREMENT is 1, and it will increment by 1 for each new record.
 CREATE TABLE Person_details(Person_id int NOT NULL AUTO_INCREMENT, Person_nameame varchar(30) NOT NULL, 
 Person_age int, PRIMARY KEY (Personid));
+
+
+-- SQL query using all the Constraints
+
+create table if not exists Test_data( 
+test_id int NOT NULL auto_increment  ,
+test_name varchar(30)  NOT NULL default 'unknown' , 
+test_mailid varchar(30) unique NOT NULL,
+teast_adress varchar(30) check (teast_adress= 'bengalore') NOT NULL,
+test_salary int check(test_salary > 10000) NOT NULL,
+primary key (test_id))
