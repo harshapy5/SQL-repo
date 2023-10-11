@@ -1,1 +1,38 @@
+-- In this file, we learn about the operators that are used mostly in MYSQL and few clauses.
+
+=	          -- Equal 
+>	          -- Greater than
+<	          -- Less than
+>=	        -- Greater than equal 
+<=	        -- Less than equal 
+< >	        -- Not equal (also written as !=)
+BETWEEN	    -- Between a range 
+LIKE	      -- Search for  pattern 
+IN	        -- Specify multiple possible values for a column
+
+-- There are various clauses mostly used in MYSQL.
+
+WHERE - Used with SELECT, INSERT, UPDATE and DELETE clauses to filter the results based on a condition.
+
+Ex : SELECT * FROM officers WHERE address = 'Mau';  -- Filters out the data based on address = 'Mau'
+WHERE can be used with AND, OR combination of bot AND and OR.
+
+ORDER BY - Used to sort the records in ascending or descending order.
+Default sort order is ascending order.
+
+Ex : SELECT * FROM officers ORDER BY officer_id;  -- Sorts the results in Default Ascending order.
+With ASC -- SELECT * FROM officers ORDER BY officer_id ASC;      -- Sorts results in Ascending order.
+With DESC -- SELECT * FROM officers ORDER BY officer_id DESC;    -- Sorts results in Descending order.
+
+
+GROUP BY -- Used to collec records and group by a column or multiple columns. Mostly used with Aggregate Functions.
+
+Ex : SELECT Officer_name, COUNT(*) FROM officers GROUP BY Officer_name; 
+GROUP BY can be used with WHERE clause.
+
+HAVING -- HAVING is used with GROUP BY and Aggregate Functions. It always returns te rows when the condition is TRUE.
+
+Ex : SELECT emp_name, SUM(working_hours) AS "Total working hours" FROM employees GROUP BY emp_name HAVING SUM(working_hours) > 5;  
+The result of above query shows Total working hours grouped on name and who is having Total working hours greater than 5.
+
 
