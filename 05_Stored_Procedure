@@ -1,1 +1,60 @@
+-- In this section, we learn about the SQL Sored Procedure.
+-- What is a Stored Procedure?
+
+  --  The stored procedure is a prepared SQL query that you can save so that the query can be reused over and over again. 
+  -- So, if the user has an SQL query that you write over and over again, keep it as a stored procedure and execute it.
+  -- Users can also pass parameters to a stored procedure so that the stored procedure can act based on the parameter value that is given.
+
+-- Sntax of a Stored Procedure.
+
+DELIMETER $$
+CREATE STORED PROCEDURE <Stored_Procedure_Name>()
+BEGIN
+  SELECT col1,col2,col3,,,,, FROM <table_name>;
+END $$
+
+Ex :
+
+DELIMETER $$
+CREATED STORED PROCEDURE Customer_details();
+BEGIN  
+  SELECT First_name, Last_name, City FROM Customers;
+END $$
+ -- Here the procedure stores First_name, Last_name and City from Customer table.
+
+-- Execution of a Stored Procedure.
+CALL Customer_details();
+
+-- DROP a Stored Procedure.
+DROP PROCEDURE [IF EXISTS] Customer_details();
+
+-- Stored Procedure with Parameters.
+  1. IN
+  2. OUT
+  3. INOUT
+
+IN -- Input parameter that passes a value from the caller into the procedure’s routine.
+
+DELIMITER //
+CREATE PROCEDURE get_info(
+  IN in_name VARCHAR(50))
+BEGIN
+  SELECT manufacturer_id, manufacturer, 
+    COUNT(*) AS Total_count FROM airplanes WHERE name = in_name
+END//
+DELIMITER ;
+
+CALL get_Info("Aibus"); -- This Procedure gets the data related to the in_name from airplane table.
+
+OUT -- Parameter is an OUTPUT parameter in which the procedure is supposed to return once the function execution is complete. 
+
+DELIMITER //
+CREATE PROCEDURE GetAverageMarks(OUT average DECIMAL(5,2))
+BEGIN
+    SELECT AVG(total_marks) INTO average FROM studentMarks;
+END //
+DELIMITER
+
+
+
 
