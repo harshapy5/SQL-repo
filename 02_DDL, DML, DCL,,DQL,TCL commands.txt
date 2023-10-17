@@ -1,0 +1,90 @@
+-- In MYSQL, there are majorly five types of SQL Commands.
+-- DDL – Data Definition Language
+-- DQL – Data Query Language
+-- DML – Data Manipulation Language
+-- DCL – Data Control Language
+-- TCL – Transaction Control Language
+
+-- DDL - Data Definiton Language
+1. CREATE     -- Used to create Databse objects like Tables, Views, Functions, Procedure, Triggers.
+2. ALTER      -- Used to alter the Structure of Table.
+3. DROP       -- Used to deleter objects from Database.
+4. TRUNCATE   -- Used to delete records from a table.
+5. RENAME     -- Used to rename an existing objects.
+
+-- CREATE 
+CREATE TABLE IF NOT EXISTS Music.Artists 
+    ArtistId INT NOT NULL AUTO_INCREMENT,
+    ArtistName VARCHAR(255) NOT NULL,
+    PRIMARY KEY (ArtistId)
+);
+
+-- ALTER -- Always used with 'ADD', 'MODIFY', 'DROP'
+ALTER TABLE employee ADD city CHAR(20)
+DESCRIBE employee;
+ALTER TABLE employes MODIFY name CHAR (30) NOT NULL;
+
+-- DROP 
+DROP TABLE <Table_name>;
+DROP DATABSE <Database_name>;
+
+-- TRUNCATE
+TRUNCATE TABLE <Table_name>;
+
+-- DML commands - Data Manipulation Language 
+INSERT        -- It is used to insert data into a table.
+UPDATE        -- It is used to update existing data within a table.
+DELETE        -- It is used to delete records from a database table.
+CALL          -- Call a PL/SQL or JAVA subprogram.
+
+-- INSERT 
+INSERT INTO Person_details (Surname, FirstName, DOB, Sex, [Weight], Height, Vaccinated)
+VALUES(NULL, NULL,'2019-11-19', 'F', 14.0, 23.1, 'No')
+
+-- UPDATE 
+UPDATE <Table_name> SET col1 = Val1, Col2 = Val2, etc WHERE <Condition>;
+
+-- DELETE
+DELETE FROM <table_name> WHERE <Condition>;
+
+-- DCL - Data Conrol Language
+DCL includes commands such as GRANT and REVOKE which mainly deal with the rights, permissions, and other controls of the database system.
+
+-- GRANT 
+GRANT SELECT, UPDATE ON MY_TABLE TO SOME_USER, ANOTHER_USER;  
+
+-- REVOKE
+REVOKE SELECT, UPDATE ON MY_TABLE FROM USER1,USER2;
+
+-- DQL - Data Query Language
+SELECT : It is used to retrieve data from a table
+
+SELECT * FROM <Table_name>;
+
+
+-- TCL - Transaction Control Language  
+COMMIT
+ROLLBACK
+SAVEPOINT
+
+1. COMMIT : 
+This command is used to save the data permanently. 
+Whenever we perform any of the DML command like -INSERT, DELETE or UPDATE, these can be rollback if the data is not stored permanently. 
+So in order to be at the safer side COMMIT command is used. 
+
+Syntax:  
+commit; 
+
+2. ROLLBACK : 
+This command is used to get the data or restore the data to the last savepoint or last committed state. 
+If due to some reasons the data inserted, deleted or updated is not correct, you can rollback the data to a particular savepoint or if 
+savepoint is not done, then to the last committed state. 
+
+Syntax:  
+rollback;
+
+3. SAVEPOINT : 
+This command is used to save the data at a particular point temporarily, so that whenever needed can be rollback to that particular point. 
+
+Syntax:  
+Savepoint A; 

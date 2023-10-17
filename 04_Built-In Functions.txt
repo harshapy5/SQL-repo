@@ -1,0 +1,45 @@
+
+-- In this file, We will learn about the Built-In Functions that are mostly used in MYSQL.
+
+/* MySQL's aggregate function is used to perform calculations on multiple values and return the result in a single value like the average of all values, 
+the sum of all values, and maximum & minimum value among certain groups of values. We mostly use the aggregate functions with SELECT statements in the data query languages.*/
+
+Few Built-In Aggregate Functions are :
+1. COUNT()     -- It returns the number of rows including NULL values.
+Ex : SELCT COUNT(*) FROM officers;
+
+2. SUM()       -- It returns total summed value in a set.
+EX : SELCT SUM(sales) FROM sales_data;
+
+3. average()   -- It returns the average value of an expression.
+Ex : SELECT AVG(work_hours) FROM Employee_data;
+
+4. MIN()       -- It returns the minimum value (lower value) present in the set.
+Ex : SELCT MIN(price) FROM sales_data;
+
+5. MAX()       -- It returns the maximum value (Higher value) present in the set.
+Ex : SELECT MAX(price) FROM sales_data.
+
+-- Few DATE Functions in MYSQL.
+1. CURRENT_DATE() or CUR_DATE()    -- Returns the current system's date.
+Ex : SELECT CUR_DATE(); -- Gives 2023-10-11
+
+2. DATE()              -- Returns the date from the given Date/Time.
+Ex : Select date('2023-10-11 10:51:00');  -- Gives 2023-10-11.
+
+3. DATEDIFF()       -- Returns the number of days between two date.
+Ex : SELECT DATEDIFF('2023-10-01','2023-10-11'));    -- Gives -10 as result.( Use ABS() to get the absolute value).
+
+4. DAY()          -- Returns the day of the date.
+Ex : Select day('2018-09-10');     -- Gives 10 as the day is 10.
+
+5. DAYNAME()      -- Returns day name of the given day.
+Ex : Select dayname('2023-10-11');    -- Gives Wednesday as the 11th day is Wednesday.
+
+6. Select current_timestamp();  -- Returns the present date with time.
+
+7. str_to_date()    -- Returns a value tha is converted from string to date.
+Ex : select str_to_date('October 11 2023', '%M %d %Y');   -- Gives date 2023-10-11.
+ 
+
+
