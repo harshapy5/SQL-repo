@@ -1,1 +1,158 @@
+-- A relational database consists of multiple related tables linking together using common columns, which are known as foreign key columns. 
+-- Because of this, the data in each table is incomplete from the business perspective.
+
+-- MYSQL supports four types of JOINS.
+  1. INNER JOIN
+  2. LEFT JOIN
+  3. RIGHT JOIN
+  4. CROSS JOIN
+
+1. INNER JOIN - Compares the values in both the tables based on the join condition and returns a table with only matching data.
+
+Ex : 
+
+CREATE TABLE IF NOT EXISTS members(
+       member_id INT AUTO INCREMENT,
+       name VARCHAR(30),
+       PRIMARY KEY(member_id));
+
+INSERT INTO members(name)
+VALUES('Harsha'),('Pavan'),('Mary'),('Eric'),('Matt');
+
+CREATE TABLE IF NOT EXISTS committees(
+       comittee_id INT AUTO INCREMENT,
+       name VARCHAR(30),
+       PRIMARY KEY(comitee_id));
+
+INSERT INTO committees(name)
+VALUES('Harsha'),('Mary'),('Eric'),('David');
+
+SELECT m.member_id,m.name AS Member_name,
+c.commitee_id,c.name AS Committee_name 
+FROM members m INNER JOIN committees c on c.name = m.name
+
++-----------+--------+--------------+-----------+
+| member_id | member | committee_id | committee |
++-----------+--------+--------------+-----------+
+|         1 | Harsha |            1 | Harsha    |
+|         3 | Mary   |            2 | Mary      |
+|         4 | Eric   |            3 | Eric      |
++-----------+--------+--------------+-----------+
+
+-- In this the JOIN clause uses the name column in both tables and gives the matching result.
+
+
+2. LEFT JOIN - Compares the values from both columns on given condition and gives matching results.
+               And also gives the non matching records from the left table.
+               And the non matching records will be filled with NULL in right table.
+
+Ex :
+
+SELECT m.member_id,m.name AS Member_name,
+c.comittee_id,c.name AS Committee_name 
+FROM members m LEFT JOIN committees c USING(name);
+
++-----------+--------+--------------+-----------+
+| member_id | member | committee_id | committee |
++-----------+--------+--------------+-----------+
+|         1 | Harsha |             1| Harsha    |
+|         2 | Pavan  |         NULL | NULL      |
+|         3 | Mary   |            2 | Mary      |
+|         4 | Eric   |            3 | Eric      |
+|         5 | Mattt  |          NULL| NULL      |
++-----------+--------+--------------+-----------+
+
+3. RIGHT JOIN - Compares the values from both columns on given condition and gives matching results.
+               And also gives the non matching records from the right table.
+               And the non matching records will be filled with NULL in left table.
+
+
+Ex :
+
+SELECT m.member_id,m.name AS Member_name,
+c.comittee_id,c.name AS Committee_name 
+FROM members m RIGHT JOIN committees c USING(name);
+
++-----------+--------+--------------+-----------+
+| member_id | member | committee_id | committee |
++-----------+--------+--------------+-----------+
+|         1 | Harsha |             1| Harsha    |
+|         3 | Mary   |             2| Mary      |
+|         4 | Eric   |             3| Eric      |
+|       NULL| NULL   |             4| DAVID     |
++-----------+--------+--------------+-----------+
+
+
+4. CROSS JOIN - Unlike the inner join, left join, and right join, the cross join clause does not have a join condition.
+                The cross join makes a Cartesian product of rows from the joined tables. 
+                The cross join combines each row from the first table with every row from the right table to make the result set.
+
+Ex :
+
+SELECT m.member_id,m.name AS Member_name,
+c.comittee_id,c.name AS Committee_name 
+FROM members m CROSS JOIN committees c;
+
+
+UNION and UNION ALL
+
+1. UNION - operator allows you to combine two or more result sets of queries into a single result set.
+           First, the number and the orders of columns that appear in all SELECT statements must be the same.
+           Second, the data types of columns must be the same or compatible.
+           By default, the UNION operator removes duplicate rows even if you don’t specify the DISTINCT operator explicitly.
+
+Ex :
+
+CREATE TABLE t1 (
+    id INT PRIMARY KEY
+);
+
+CREATE TABLE t2 (
+    id INT PRIMARY KEY
+);
+
+INSERT INTO t1 VALUES (1),(2),(3);
+INSERT INTO t2 VALUES (2),(3),(4);
+
+SELECT id
+FROM t1
+UNION
+SELECT id
+FROM t2;
+
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
++----+
+
+
+UNION ALL - If you use the UNION ALL explicitly, the duplicate rows, if available, remain in the result. 
+            Because UNION ALL does not need to handle duplicates, it performs faster than UNION DISTINCT .
+
+Ex :
+
+SELECT id
+FROM t1
+UNION ALL
+SELECT id
+FROM t2;
+
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  2 |
+|  3 |
+|  4 |
++----+
+
+
+
+
 
